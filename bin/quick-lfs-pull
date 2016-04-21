@@ -1,0 +1,5 @@
+#!/bin/sh
+git lfs install --skip-smudge
+git pull "$@"
+git lfs install --force
+git lfs pull
