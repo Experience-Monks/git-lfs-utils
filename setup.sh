@@ -1,7 +1,7 @@
 #!/bin/sh
 cd $(dirname "$0")
 DIR=$(pwd -L)
-cd -
+cd - > /dev/null
 
 SOURCE_FILES=()
 if [ -f ~/.bash_profile ]; then
@@ -15,19 +15,18 @@ if [ -f ~/.kshrc ]; then
 fi
 
 for source_file in "${SOURCE_FILES[@]}"; do
-  echo $source_file
   last=$(tail -1 $source_file);
-  echo $last | grep "^$"
+  echo $last | grep "^$" > /dev/null 2>&1
   if [ $? != 0 ]; then
     echo '' >> "$source_file"
   fi
   
   COMMAND="export PATH=\$PATH:$DIR/bin"
-  grep "$COMMAND" "$source_file" > /dev/null 2> /dev/null
+  grep "$COMMAND" "$source_file" > /dev/null 2>&1
   if [ $? != 0 ]; then
     echo "$COMMAND" >> "$source_file"
   else
-    echo 'command already added'
+    echo 'commands already added to your path'
   fi
 done
 
