@@ -14,7 +14,7 @@ cd git-lfs-utils
 ./setup.sh
 ```
 
-adding the `--override-git` options will add function that will call the appropriate git command.
+adding the `--override-git` flag will add a shell function that will call the appropriate git command.
 
 git clone -> quick-lfs-clone  
 git pull -> quick-lfs-pull  
