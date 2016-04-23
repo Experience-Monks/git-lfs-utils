@@ -1,5 +1,7 @@
 #!/bin/sh
-git clone "$@" --config filter.lfs.smudge="git-lfs smudge --skip %f"
+git-lfs install --skip-smudge
+git clone "$@"
+git-lfs install --force
 basename=$(basename "$1")
 dirname=${basename%.*}
 cd "$dirname"
