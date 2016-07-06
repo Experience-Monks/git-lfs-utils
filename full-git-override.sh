@@ -1,5 +1,8 @@
 function __git {
-	echo "this command is overridden in your shell setup file"
+	if [[ -t 1 ]]; then
+		echo "this command is overridden in your shell setup file"
+	fi
+
 	if [ "$1" == "clone" ]; then
 		shift
 		quick-lfs-clone "$@"
